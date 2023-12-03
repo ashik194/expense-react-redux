@@ -4,7 +4,8 @@ export const expenseSlice = createSlice({
     name: 'expenseSlice',
     initialState: {
         income: 2000,
-        expenseList: []
+        expenseList: [],
+        countActionPerformed: 0
     },
     reducers: {
         addExpenseAction: (currentExpense, action) => {
@@ -12,8 +13,11 @@ export const expenseSlice = createSlice({
         },
         setIncomeAction: (currentSlice, action) => {
             currentSlice.income = action.payload
+        },
+        incrementActionPerformed: (currentSlice, action) => {
+            currentSlice.countActionPerformed ++;
         }
     }
 });
 
-export const {addExpenseAction, setIncomeAction} = expenseSlice.actions
+export const {addExpenseAction, setIncomeAction, incrementActionPerformed} = expenseSlice.actions

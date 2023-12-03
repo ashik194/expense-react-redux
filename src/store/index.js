@@ -12,6 +12,7 @@ import {
     PURGE,
     REGISTER,
   } from 'redux-persist'
+import { loggerMiddleware } from "./middleware/logger-middleware";
 
 const rootReducer = combineReducers({
     EXPENSE: expenseSlice.reducer,
@@ -33,7 +34,7 @@ const store = configureStore({reducer: persistedReducers,
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).prepend(loggerMiddleware.middleware),
 })
 
 const persistorData = persistStore(store)
